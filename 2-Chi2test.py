@@ -33,21 +33,23 @@ word2=input("Enter the word2:")
 # contingency matrix
 C = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
+# Updating contingency matrix based on word1 and word2
 for units in bigram_count:
     if units[0] == word1 and units[1] == word2:
-        C[0][0] += bigram_count[units]
+        C[0][0] += bigram_count[units]  # word1 and word2
     elif units[0] == word1 and units[1] != word2:
-        C[0][1] += bigram_count[units]
+        C[0][1] += bigram_count[units]  # word1 and not word2
     elif units[0] != word1 and units[1] == word2:
-        C[1][0] += bigram_count[units]
+        C[1][0] += bigram_count[units]  # not word1 and word2
     else:
-        C[1][1] += bigram_count[units]
+        C[1][1] += bigram_count[units]  # not word1 and not word2
 
 # total matrix
-C[0][2] = C[0][0] + C[0][1]
-C[1][2] = C[1][0] + C[1][1]
-C[2][0] = C[0][0] + C[1][0]
-C[2][1] = C[0][1] + C[1][1]
+# Updating contingency matrix based on word1 and word2
+C[0][2] = C[0][0] + C[0][1]  
+C[1][2] = C[1][0] + C[1][1] 
+C[2][0] = C[0][0] + C[1][0]  
+C[2][1] = C[0][1] + C[1][1] 
 tot = C[2][0] + C[2][1]
 
 print("Contingency matrix:")
@@ -57,10 +59,11 @@ for row in C:
 # expected matrix
 E = [[0, 0], [0, 0]]
 
-E[0][0] = (C[0][2] * C[2][0]) / tot
-E[0][1] = (C[0][2] * C[2][1]) / tot
-E[1][0] = (C[1][2] * C[2][0]) / tot
-E[1][1] = (C[1][2] * C[2][1]) / tot
+# Calculate expected values based on contingency matrix and total occurrences
+E[0][0] = (C[0][2] * C[2][0]) / tot  # expected occurrences of word1 and word2
+E[0][1] = (C[0][2] * C[2][1]) / tot  # expected occurrences of word1 and not word2
+E[1][0] = (C[1][2] * C[2][0]) / tot  # expected occurrences of not word1 and word2
+E[1][1] = (C[1][2] * C[2][1]) / tot  # expected occurrences of neither word1 nor word2
 
 print("Expected matrix:")
 for row in E:

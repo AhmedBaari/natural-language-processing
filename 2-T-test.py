@@ -27,31 +27,32 @@ df_new_list = df_new.tolist()
 stop_words=set(stopwords.words('english'))
 unigrams=[unigram_fun(sentence) for sentence in df_new_list]
 bigrams=[bigram_fun(sentence) for sentence in df_new_list]
+print(df_new_list)
 
 #Calculaing the length of the corpus
 N=0
-for block in df_new_list:
-    N=N+len(block)
+for line in df_new_list:
+    N=N+len(line)
 
 print("The length of the corpus is:",N)
 
 
 #unigram_dict
 unigram_dict={}
-for block in unigrams:
-    for word in block:
+for line in unigrams:
+    for word in line:
         unigram_dict[word]=0
-for block in unigrams:
-    for word in block:
+for line in unigrams:
+    for word in line:
         unigram_dict[word]=unigram_dict[word]+1
 
 #bigram_dict
 bigram_dict={}
-for block in bigrams:
-    for word in block:
+for line in bigrams:
+    for word in line:
         bigram_dict[word]=0
-for block in bigrams:
-    for word in block:
+for line in bigrams:
+    for word in line:
         bigram_dict[word]=bigram_dict[word]+1
 
 
@@ -60,15 +61,15 @@ b=input("Enter the 2nd word:")
 cv=float(input("Enter the critical value:"))
 
 #observerd mean
-OE=(bigram_dict[(a,b)]/N) 
+O=(bigram_dict[(a,b)]/N) 
 
 #Expected mean
-EM=((unigram_dict[a]/N)*(unigram_dict[b]/N))
+E=((unigram_dict[a]/N)*(unigram_dict[b]/N))
 
 #variance
-variance=EM
+variance=E
 
-ttest = (OE-EM)/np.sqrt((variance/N))
+ttest = (O-E)/np.sqrt((variance/N))
 print(ttest)
 
 if(ttest<cv):
