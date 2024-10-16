@@ -14,7 +14,5 @@ for _ in range(3):
                            
     alpha_b = max(alpha_a * 0.3 * emission_probs["CP"][state], 
                            alpha_b * 0.5 * emission_probs["IP"][state])
-    print(alpha_a)
-    print("CP" if alpha_a > alpha_b else "IP")
-    print(alpha_b)
+    print(alpha_a, alpha_b)
     print("CP" if alpha_a > alpha_b else "IP")
