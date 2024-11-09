@@ -69,7 +69,7 @@ for i in range(3):
     g_B = (
         alpha_B[i] * beta_B[i] 
     ) / (
-        alpha_B[i] * beta_B[i] + alpha_A[i] + beta_A[i]
+        alpha_B[i] * beta_B[i] + alpha_A[i] * beta_A[i]
     )
 
     gamma_A.append(g_A)
