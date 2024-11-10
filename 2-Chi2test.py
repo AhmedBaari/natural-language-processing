@@ -8,13 +8,6 @@ from nltk.corpus import stopwords
 import string
 stop_words=set(stopwords.words('english'))
 
-def bigram_fun(bigram_count,sentence):
-    sentence=sentence.lower()
-    tokens=word_tokenize(sentence)
-    tokens_new=[token for token in tokens if token not in stop_words and token not in string.punctuation]
-    bigram_list=list(bigrams(tokens_new))
-    for bigram in bigram_list:
-        bigram_count[bigram]=bigram_count.get(bigram,0)+1
         
 sentences = [
     "I love studying data science.",
@@ -26,7 +19,13 @@ sentences = [
 
 bigram_count={}
 for sentence in sentences:
-    bigram_fun(bigram_count,sentence)
+    sentence=sentence.lower()
+    tokens=word_tokenize(sentence)
+    tokens_new=[token for token in tokens if token not in stop_words and token not in string.punctuation]
+    bigram_list=list(bigrams(tokens_new))
+    for bigram in bigram_list:
+        bigram_count[bigram]=bigram_count.get(bigram,0)+1
+
 
 word1=input("Enter the word1:")
 word2=input("Enter the word2:")

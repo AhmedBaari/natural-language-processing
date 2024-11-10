@@ -33,7 +33,7 @@ sentences = [
 # Processing each sentence
 for sentence in sentences:
     tokens = word_tokenize(sentence)
-    tokens_cleaned = [token.lower() for token in tokens if token.lower() not in stop_words and token not in string.punctuation]
+    tokens_cleaned = [token.lower() for token in tokens if token not in string.punctuation]
     
     # Counting unigrams
     for word in tokens_cleaned:
