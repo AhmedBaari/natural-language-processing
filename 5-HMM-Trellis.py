@@ -1,6 +1,10 @@
 # A: forward procedure
 # Credit: Raghavender
-emission_probs = {'A': {'K': 0.4, 'T': 0.5}, 'B': {'K': 0.3, 'T': 0.3}}
+emission_probs = {'A': {'K': 0.4, 
+                        'T': 0.5}, 
+                  'B': {'K': 0.3, 
+                        'T': 0.3}
+                        }
 alpha_a = 1
 alpha_b = 0
 alpha_A = [alpha_a]
@@ -33,24 +37,25 @@ beta_B = [b_B]
 
 for state in reversed(visible_states):
     old_bA = b_A
-    old_bB = b_B
 
     b_A = (
         b_A * 0.2 * emission_probs["A"][state]
-    ) + (
+    ) + (  
         b_B * 0.8 * emission_probs["A"][state]
     )
 
     b_B = (
         old_bA * 0.6 * emission_probs["B"][state]
     ) + (
-        old_bB * 0.4 * emission_probs["B"][state]
-    )
+        b_B * 0.4 * emission_probs["B"][state]
+    )         
 
     beta_A.append(b_A)
     beta_B.append(b_B)
 
-beta_A, beta_B
+# Reverse the Beta list for correct order
+beta_A.reverse()
+beta_B.reverse()
 
 
 # C. BEST STATE SEQUENCE 
@@ -80,5 +85,3 @@ for i in range(3):
         "A" if gamma_A[i] > gamma_B[i] else "B", 
         end=" "
     )
-
-# 
